@@ -1,17 +1,16 @@
-
-import pygame
-import sys
-import random
-import time 
-from class_snake import Snake
-from class_food import foodSpawner
+life = 3
 
 while True:
+	import pygame, sys, random, time
+	from class_snake import Snake
+	from class_food import foodSpawner
 	while True:
 		window = pygame.display.set_mode((500, 500))
 		bg = pygame.image.load('prato_bg.jpg')
 		mela = pygame.image.load('mela.jpg')
 		pygame.display.set_icon(mela)
+		if life == 0:
+			bg = pygame.image.load('prato_2_bg.jpg')
 
 		pygame.display.set_caption("Snake game by Francesco & Matteo")
 		fps = pygame.time.Clock()
@@ -50,11 +49,17 @@ while True:
 			pygame.draw.rect(window, pygame.Color(231,0,0), pygame.Rect(foodPos[0], foodPos[1], 10, 10))
 
 			if snake.checkCollision() == 1:
+				life -= 1
 				break
 
-			pygame.display.set_caption("SCORE: " + str(score))
-			pygame.display.flip()
+			if life == 0:
+				bg = pygame.image.load('prato_2_bg.jpg')
+			if life == -1:
+				gameOver()
 
+			LIFE_SCORE = "LIFE: " + str(life) + "   SCORE: " + str(score)
+			pygame.display.set_caption(LIFE_SCORE)
+			pygame.display.flip()
 			fps.tick(7)
 
 

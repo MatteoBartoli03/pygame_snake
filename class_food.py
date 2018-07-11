@@ -1,6 +1,4 @@
-import pygame
-import sys
-import random 
+import pygame, sys, random 
 
 class foodSpawner():
 	def __init__(self):
