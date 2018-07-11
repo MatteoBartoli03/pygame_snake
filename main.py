@@ -5,14 +5,17 @@ while True:
 	from class_snake import Snake
 	from class_food import foodSpawner
 	from pygame.locals import *
+	from time import gmtime, strftime
+
 	pygame.init()
 	while True:
-		screen = pygame.display.set_mode((500, 500))
+		strftime("%a, %d %b %Y %H:%M:%S", gmtime())
+		screen = pygame.display.set_mode((500, 540))
 		bg = pygame.image.load('prato_bg.jpg')
-		mela = pygame.image.load('mela.jpg')
-		pygame.display.set_icon(mela)
+		ICON = pygame.image.load('ICON.jpg')
+		pygame.display.set_icon(ICON)
 
-		#pygame.display.set_caption("Snake game by Francesco & Matteo")
+		pygame.display.set_caption("Snake game by Francesco & Matteo")
 		fps = pygame.time.Clock()
 
 		score = 0
@@ -64,26 +67,24 @@ while True:
 							if ev.type == QUIT:
 								done = True
 					pygame.quit()
-			if life == -1:
-				gameOver()
+					sys.exit()
+
 
 			LIFE_SCORE = "LIFE: " + str(life) + "   SCORE: " + str(score)
-			pygame.display.set_caption(LIFE_SCORE)
+			bg = pygame.image.load('prato_bg.jpg')
+			font = pygame.font.SysFont("Comfortaa", 30)
+			surf_text = font.render(LIFE_SCORE, True, (255, 255, 255))
+			screen.blit(surf_text, (10, 10))                            
 			pygame.display.flip()
-			fps.tick(7.5)
+			done = False
+			while not done:
+				for ev in pygame.event.get():
+						if ev.type == QUIT:
+							done = True
+				break
+			pygame.display.flip()
+			fps.tick(10)
 
-			if score == 20:
-				bg = pygame.image.load('prato_bg.jpg')
-				font = pygame.font.SysFont("Comfortaa", 100)
-				surf_text = font.render("LEVEL 2", True, (0, 0, 0))
-				screen.blit(surf_text, (15, 200))                            
-				pygame.display.flip()
-				done = False
-				while not done:
-					for ev in pygame.event.get():
-							if ev.type == QUIT:
-								done = True
-					pygame.quit()
 
 		if snake.checkCollision() == 1:
 			break

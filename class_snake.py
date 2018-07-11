@@ -35,10 +35,10 @@ class Snake():
 			return 0
 
 	def checkCollision(self):
-		if self.position[0] > 490 or self.position[0] < 0:
+		if self.position[0] > 500 or self.position[0] < 0:
 			return 1
 
-		elif self.position[1] > 490 or self.position[1] < 0:
+		elif self.position[1] > 530 or self.position[1] < 40:
 			return 1
 
 		for bodyPart in self.body[1:]:
