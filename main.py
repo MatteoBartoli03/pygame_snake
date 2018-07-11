@@ -60,7 +60,7 @@ while True:
 			LIFE_SCORE = "LIFE: " + str(life) + "   SCORE: " + str(score)
 			pygame.display.set_caption(LIFE_SCORE)
 			pygame.display.flip()
-			fps.tick(7)
+			fps.tick(20)
 
 
 		if snake.checkCollision() == 1:
