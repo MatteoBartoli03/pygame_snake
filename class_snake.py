@@ -35,7 +35,7 @@ class Snake():
 			return 0
 
 	def checkCollision(self):
-		if self.position[0] > 500 or self.position[0] < 0:
+		if self.position[0] > 530 or self.position[0] < 40:
 			return 1
 
 		elif self.position[1] > 530 or self.position[1] < 40:
@@ -45,9 +45,6 @@ class Snake():
 			if self.position == bodyPart:
 				return 1
 		return 0
-
-	def getHeadPosition(self):
-		return self.position 
 
 	def getBody(self):
 		return self.body
