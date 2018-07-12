@@ -50,8 +50,8 @@ while True:
 			for pos in snake.getBody():
 				pygame.draw.rect(screen, pygame.Color(225,218,228), pygame.Rect(pos[0], pos[1], 10, 10))
 
-			for pos in wall.Body():
-				pygame.draw.rect(screen, pygame.Color(225,218,228), pygame.Rect(pos[0], pos[1], 10, 10))
+			#for pos in wall.Body():
+			#	pygame.draw.rect(screen, pygame.Color(225,218,228), pygame.Rect(pos[0], pos[1], 10, 10))
 
 			pygame.draw.rect(screen, pygame.Color(231,0,0), pygame.Rect(foodPos[0], foodPos[1], 10, 10))
 
@@ -59,10 +59,10 @@ while True:
 				life -= 1
 				break
 
-			if score >= 1:
-				if wall.check_collision() == 1:
-					life -= 1
-					break
+			#if score >= 1:
+			#	if wall.check_collision() == 1:
+			#		life -= 1
+			# 		break
 
 			if life == 0:
 				bg = pygame.image.load('prato_bg.jpg')
@@ -78,30 +78,30 @@ while True:
 					pygame.quit()
 					sys.exit()
 
-			#LIFE_SCORE = "LIFE: " + str(life) + "   SCORE: " + str(score)
-			#bg = pygame.image.load('prato_bg.jpg')
-			#font = pygame.font.SysFont("Comfortaa", 30)
-			#surf_text = font.render(LIFE_SCORE, True, (255, 255, 255))
-			#screen.blit(surf_text, (10, 10))                            
-			#pygame.display.flip()
-			#done = False
-			#while True:
-			#	for ev in pygame.event.get():
-			#			if ev.type == QUIT:
-			#				break
-			#	break
+			LIFE_SCORE = "LIFE: " + str(life) + "   SCORE: " + str(score)
+			bg = pygame.image.load('prato_bg.jpg')
+			font = pygame.font.SysFont("Comfortaa", 30)
+			surf_text = font.render(LIFE_SCORE, True, (255, 255, 255))
+			screen.blit(surf_text, (10, 10))                            
+			pygame.display.flip()
+			done = False
+			while True:
+				for ev in pygame.event.get():
+						if ev.type == QUIT:
+							break
+				break
 
-			#bg = pygame.image.load('prato_bg.jpg')
-			#font = pygame.font.SysFont("Comfortaa", 20)
-			#surf_text = font.render('SNAKE            FOOD', True, (255, 255, 255))
-		#	screen.blit(surf_text, (120, 555))                            
-			#pygame.display.flip()
-			#done = False
-		#	while True:
-			#	for ev in pygame.event.get():
-			#			if ev.type == QUIT:
-			#				break
-			#	break
+			bg = pygame.image.load('prato_bg.jpg')
+			font = pygame.font.SysFont("Comfortaa", 20)
+			surf_text = font.render('SNAKE            FOOD', True, (255, 255, 255))
+			screen.blit(surf_text, (120, 555))                            
+			pygame.display.flip()
+			done = False
+			while True:
+				for ev in pygame.event.get():
+						if ev.type == QUIT:
+							break
+				break
 				
 
 
