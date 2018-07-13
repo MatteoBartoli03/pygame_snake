@@ -41,7 +41,10 @@ while True:
 						snake.ChangeDirTo("DOWN")
 
 			foodPos = foodSpawner.spawnFood()
-			
+			if score == 29:
+				foodPos= [270, 270]
+
+
 			if snake.move(foodPos) == 1:
 				score += 1
 				foodSpawner.setFoodOnScreen(False)
@@ -53,15 +56,16 @@ while True:
 				speed = 15
 			
 			if score >= 15-1:
-				speed = 10
 				position_of_wall_1 = [40, 100]
 				body_of_wall_1 = []
 				for x in range(0, 30):
 					body_of_wall_1.append([(position_of_wall_1[0]+ (x*10)), 100])
 					body_of_wall_1.append([(position_of_wall_1[0]+ (x*10)), 110])
 
+			if score == 15:
+				speed = 11
+
 			if score >= 18-1:
-				speed = 10
 				position_of_wall_2 = [530,480]
 				body_of_wall_2 = []
 				for x in range(0, 30):
@@ -69,7 +73,6 @@ while True:
 					body_of_wall_2.append([(position_of_wall_2[0]- (x*10)), 490])
 			
 			if score >= 21-1:
-				speed = 10
 				position_of_wall_3 = [100,530]
 				body_of_wall_3 = []
 				for x in range(0, 30):
@@ -77,7 +80,6 @@ while True:
 					body_of_wall_3.append([110,(position_of_wall_3[1]- (x*10))])
 			
 			if score >= 24-1:
-				speed = 10
 				position_of_wall_4 = [500, 330]  
 				body_of_wall_4 = []
 				for x in range(0, 30):
@@ -85,7 +87,6 @@ while True:
 					body_of_wall_4.append([490, (position_of_wall_4[1]- (x*10))])
 
 			if score >= 27-1:
-				speed = 10
 				position_of_wall_5_1 = [230, 230]
 				position_of_wall_5_2 = [330, 230]
 				position_of_wall_5_3 = [150, 340]
