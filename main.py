@@ -68,6 +68,22 @@ while True:
 					body_of_wall_3.append([100,(position_of_wall_3[1]- (x*10))])
 					body_of_wall_3.append([110,(position_of_wall_3[1]- (x*10))])
 
+			if score >= 1:
+				for x in body_of_wall_1:
+					if x == foodSpawner.spawnFood():
+						foodSpawner.setFoodOnScreen(False)
+						break
+			if score >= 2:
+				for x in body_of_wall_2:
+					if x == foodSpawner.spawnFood():
+						foodSpawner.setFoodOnScreen(False)
+						break			
+			if score >= 3:
+				for x in body_of_wall_3:
+					if x == foodSpawner.spawnFood():
+						foodSpawner.setFoodOnScreen(False)
+						break
+
 			screen.blit(bg, [0, 0])
 
 			for pos in snake.getBody():
@@ -126,30 +142,30 @@ while True:
 					pygame.quit()
 					sys.exit()
 
-		#	LIFE_SCORE = "LIFE: " + str(life) + "   SCORE: " + str(score)
-		#	bg = pygame.image.load('prato_bg.jpg')
-		#	font = pygame.font.SysFont("Comfortaa", 30)
-		#	surf_text = font.render(LIFE_SCORE, True, (255, 255, 255))
-		#	screen.blit(surf_text, (10, 10))                            
-		#	pygame.display.flip()
-		#	done = False
-		#	while True:
-		#		for ev in pygame.event.get():
-		#				if ev.type == QUIT:
-		#					break
-		#		break
+			LIFE_SCORE = "LIFE: " + str(life) + "   SCORE: " + str(score)
+			bg = pygame.image.load('prato_bg.jpg')
+			font = pygame.font.SysFont("Comfortaa", 30)
+			surf_text = font.render(LIFE_SCORE, True, (255, 255, 255))
+			screen.blit(surf_text, (10, 10))                            
+			pygame.display.flip()
+			done = False
+			while True:
+				for ev in pygame.event.get():
+						if ev.type == QUIT:
+							break
+				break
 
-			#bg = pygame.image.load('prato_bg.jpg')
-			#font = pygame.font.SysFont("Comfortaa", 2)
-			#surf_text = font.render('SNAKE            FOOD            WALL', True, (255, 255, 255))
-			#screen.blit(surf_text, (12, 555))                            
-			#pygame.display.flip()
-			#done = False
-			#while True:
-			#	for ev in pygame.event.get():
-			#			if ev.type == QUIT:
-			#				break
-			#	break
+			bg = pygame.image.load('prato_bg.jpg')
+			font = pygame.font.SysFont("Comfortaa", 2)
+			surf_text = font.render('SNAKE            FOOD            WALL', True, (255, 255, 255))
+			screen.blit(surf_text, (12, 555))                            
+			pygame.display.flip()
+			done = False
+			while True:
+				for ev in pygame.event.get():
+						if ev.type == QUIT:
+							break
+				break
 			
 			pygame.display.flip()
 			fps.tick(speed)
