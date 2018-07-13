@@ -49,28 +49,60 @@ while True:
 				speed = 12.5
 			if score == 10:
 				speed = 15
-			if score == 2:
-				position_of_wall = [40, 100]
-				body_of_wall = []
+			if score == 1:
+				position_of_wall_1 = [40, 100]
+				body_of_wall_1 = []
 				for x in range(0, 30):
-					body_of_wall.append([(position_of_wall[0]+ (x*10)), 100])
-					body_of_wall.append([(position_of_wall[0]+ (x*10)), 110])
+					body_of_wall_1.append([(position_of_wall_1[0]+ (x*10)), 100])
+					body_of_wall_1.append([(position_of_wall_1[0]+ (x*10)), 110])
+			if score == 2:
+				position_of_wall_2 = [530,480]
+				body_of_wall_2 = []
+				for x in range(0, 30):
+					body_of_wall_2.append([(position_of_wall_2[0]- (x*10)), 480])
+					body_of_wall_2.append([(position_of_wall_2[0]- (x*10)), 490])
+			if score == 3:
+				position_of_wall_3 = [100,530]
+				body_of_wall_3 = []
+				for x in range(0, 30):
+					body_of_wall_3.append([100,(position_of_wall_3[1]- (x*10))])
+					body_of_wall_3.append([110,(position_of_wall_3[1]- (x*10))])
 
 			screen.blit(bg, [0, 0])
 
 			for pos in snake.getBody():
 				pygame.draw.rect(screen, pygame.Color(225,218,228), pygame.Rect(pos[0], pos[1], 10, 10))
 
+			if score >= 1:
+				for pos in body_of_wall_1:
+					pygame.draw.rect(screen, pygame.Color(60,60,60), pygame.Rect(pos[0], pos[1], 10, 10))
+
 			if score >= 2:
-				for pos in body_of_wall:
-					pygame.draw.rect(screen, pygame.Color(53,53,53), pygame.Rect(pos[0], pos[1], 10, 10))
+				for pos in body_of_wall_2:
+					pygame.draw.rect(screen, pygame.Color(60,60,60), pygame.Rect(pos[0], pos[1], 10, 10))
+
+			if score >= 3:
+				for pos in body_of_wall_3:
+					pygame.draw.rect(screen, pygame.Color(60, 60,60), pygame.Rect(pos[0], pos[1], 10, 10))
 
 			pygame.draw.rect(screen, pygame.Color(231,0,0), pygame.Rect(foodPos[0], foodPos[1], 10, 10))
 
 
 			a=0
+			if score >= 1:
+				for bodyPart in body_of_wall_1[1:]:
+					for partOfBody in snake.body[:]:
+						if partOfBody == bodyPart:
+							a = 1
+							break
 			if score >= 2:
-				for bodyPart in body_of_wall[1:]:
+				for bodyPart in body_of_wall_2[1:]:
+					for partOfBody in snake.body[:]:
+						if partOfBody == bodyPart:
+							a = 1
+							break
+			if score >= 3:
+				for bodyPart in body_of_wall_3[1:]:
 					for partOfBody in snake.body[:]:
 						if partOfBody == bodyPart:
 							a = 1
@@ -108,9 +140,9 @@ while True:
 		#		break
 
 			#bg = pygame.image.load('prato_bg.jpg')
-			#font = pygame.font.SysFont("Comfortaa", 20)
+			#font = pygame.font.SysFont("Comfortaa", 2)
 			#surf_text = font.render('SNAKE            FOOD            WALL', True, (255, 255, 255))
-			#screen.blit(surf_text, (120, 555))                            
+			#screen.blit(surf_text, (12, 555))                            
 			#pygame.display.flip()
 			#done = False
 			#while True:
