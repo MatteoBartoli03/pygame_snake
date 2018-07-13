@@ -1,32 +1,41 @@
+import pygame, sys, random, time
+from class_snake import Snake
+from pygame.locals import *
+from time import gmtime, strftime
+
+#variabili di base
 life = 3
 speed = 10
 score = 0
 
+#impostazione finestra
+screen = pygame.display.set_mode((580, 580))
+bg = pygame.image.load('prato_bg.jpg')
+ICON = pygame.image.load('ICON.png')	
+pygame.display.set_icon(ICON)
 
 while True:
-	import pygame, sys, random, time
-	from class_snake import Snake
 	from class_food import foodSpawner
-	from pygame.locals import *
-	from time import gmtime, strftime
+
+	#inizializzazione di pygame
 	pygame.init()
+
 	while True:
-		screen = pygame.display.set_mode((580, 580))
-		bg = pygame.image.load('prato_bg.jpg')
-		ICON = pygame.image.load('ICON.png')	
-		pygame.display.set_icon(ICON)
 
 		pygame.display.set_caption("Snake game by Francesco & Matteo")
 		fps = pygame.time.Clock()
 
+		#assegnamento variabili importate da class_food e class_snake
 		snake = Snake()
 		foodSpawner = foodSpawner()
 
+		#definiamo la funzione GAME OVER
 		def gameOver():
 			pygame.quit()
 			sys.exit()
 
 		while True:
+			#cambi di direzione e spostamenti
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
 					gameOver()
@@ -40,52 +49,45 @@ while True:
 					if event.key == pygame.K_DOWN:
 						snake.ChangeDirTo("DOWN")
 
+			#posizionamento cibo
 			foodPos = foodSpawner.spawnFood()
 			if score == 29:
 				foodPos= [270, 270]
-
-
 			if snake.move(foodPos) == 1:
 				score += 1
 				foodSpawner.setFoodOnScreen(False)
 
+			#impostazione di velocità e posiz. muri in base allo score
 			if score >= 5:
 				speed = 12.5
-			
 			if score >= 10:
 				speed = 15
-			
 			if score >= 15-1:
 				position_of_wall_1 = [40, 100]
 				body_of_wall_1 = []
 				for x in range(0, 30):
 					body_of_wall_1.append([(position_of_wall_1[0]+ (x*10)), 100])
 					body_of_wall_1.append([(position_of_wall_1[0]+ (x*10)), 110])
-
 			if score == 15:
 				speed = 11
-
 			if score >= 18-1:
 				position_of_wall_2 = [530,480]
 				body_of_wall_2 = []
 				for x in range(0, 30):
 					body_of_wall_2.append([(position_of_wall_2[0]- (x*10)), 480])
 					body_of_wall_2.append([(position_of_wall_2[0]- (x*10)), 490])
-			
 			if score >= 21-1:
 				position_of_wall_3 = [100,530]
 				body_of_wall_3 = []
 				for x in range(0, 30):
 					body_of_wall_3.append([100,(position_of_wall_3[1]- (x*10))])
 					body_of_wall_3.append([110,(position_of_wall_3[1]- (x*10))])
-			
 			if score >= 24-1:
 				position_of_wall_4 = [500, 330]  
 				body_of_wall_4 = []
 				for x in range(0, 30):
 					body_of_wall_4.append([500, (position_of_wall_4[1]- (x*10))])
 					body_of_wall_4.append([490, (position_of_wall_4[1]- (x*10))])
-
 			if score >= 27-1:
 				position_of_wall_5_1 = [230, 230]
 				position_of_wall_5_2 = [330, 230]
@@ -102,7 +104,8 @@ while True:
 				for x in range(0, 12):
 					body_of_wall_5.append([(position_of_wall_5_3[1]- (x*10)), 340])
 					body_of_wall_5.append([(position_of_wall_5_3[1]- (x*10)), 350])
-
+			
+			#determina la vittoria
 			if score == 30-1:
 				bg = pygame.image.load('prato_bg.jpg')
 				font = pygame.font.SysFont("Comfortaa", 150)
@@ -118,7 +121,7 @@ while True:
 					sys.exit()
 
 
-
+			#controllo posizionamento cibo
 			x = 0
 			if score >= 15-1:
 				for x in range(0, len(body_of_wall_1)):
@@ -127,7 +130,6 @@ while True:
 						x = 0
 					else:
 						x += 1
-
 			if score >= 18-1:
 				for x in range(0, len(body_of_wall_2)):
 					if body_of_wall_2[x] == foodSpawner.spawnFood():
@@ -135,7 +137,6 @@ while True:
 						x = 0
 					else:
 						x += 1
-
 			if score >= 21-1:
 				for x in range(0, len(body_of_wall_3)):
 					if body_of_wall_3[x] == foodSpawner.spawnFood():
@@ -143,7 +144,6 @@ while True:
 						x = 0
 					else:
 						x += 1
-
 			if score >= 24-1:
 				for x in range(0, len(body_of_wall_4)):
 					if body_of_wall_4[x] == foodSpawner.spawnFood():
@@ -151,7 +151,6 @@ while True:
 						x = 0
 					else:
 						x += 1
-
 			if score >= 27-1:
 				for x in range(0, len(body_of_wall_5)):
 					if body_of_wall_5[x] == foodSpawner.spawnFood():
@@ -162,9 +161,12 @@ while True:
 
 			screen.blit(bg, [0, 0])
 
+
+			#colorazione snake
 			for pos in snake.getBody():
 				pygame.draw.rect(screen, pygame.Color(225,218,228), pygame.Rect(pos[0], pos[1], 10, 10))
 
+			#colorazione muri
 			if score >= 15:
 				for pos in body_of_wall_1:
 					pygame.draw.rect(screen, pygame.Color(60,60,60), pygame.Rect(pos[0], pos[1], 10, 10))
@@ -185,9 +187,10 @@ while True:
 				for pos in body_of_wall_5:
 					pygame.draw.rect(screen, pygame.Color(60, 60,60), pygame.Rect(pos[0], pos[1], 10, 10))
 
+			#colorazione cibo
 			pygame.draw.rect(screen, pygame.Color(231,0,0), pygame.Rect(foodPos[0], foodPos[1], 10, 10))
 
-
+			#controllo scontro snake con muro
 			a=0
 			if score >= 15:
 				for bodyPart in body_of_wall_1[1:]:
@@ -220,11 +223,12 @@ while True:
 							a = 1
 							break
 
-
+			#perdita di vite legata a scontri
 			if snake.checkCollision() == 1 or a == 1:
 				life -= 1
 				break
 
+			#assegnazione partita persa
 			if life == 0:
 				bg = pygame.image.load('prato_bg.jpg')
 				font = pygame.font.SysFont("Comfortaa", 100)
@@ -239,6 +243,8 @@ while True:
 					pygame.quit()
 					sys.exit()
 
+
+			#punteggio e vite
 			#LIFE_SCORE = "LIFE: " + str(life) + "   SCORE: " + str(score)
 			#bg = pygame.image.load('prato_bg.jpg')
 			#font = pygame.font.SysFont("Comfortaa", 30)
@@ -252,6 +258,7 @@ while True:
 			#				break
 			#	break
 
+			#spiegazione elementi presenti nel gioco
 			#bg = pygame.image.load('prato_bg.jpg')
 			#font = pygame.font.SysFont("Comfortaa", 20)
 			#surf_text = font.render('SNAKE            FOOD            WALL', True, (255, 255, 255))
