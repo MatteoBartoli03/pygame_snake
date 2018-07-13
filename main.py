@@ -59,11 +59,8 @@ while True:
 				for x in range(0, 30):
 					body_of_wall_1.append([(position_of_wall_1[0]+ (x*10)), 100])
 					body_of_wall_1.append([(position_of_wall_1[0]+ (x*10)), 110])
-			
-			if score >= 20:
-				speed = 12.5
-			
-			if score >= 25-1:
+
+			if score >= 18-1:
 				speed = 10
 				position_of_wall_2 = [530,480]
 				body_of_wall_2 = []
@@ -71,10 +68,7 @@ while True:
 					body_of_wall_2.append([(position_of_wall_2[0]- (x*10)), 480])
 					body_of_wall_2.append([(position_of_wall_2[0]- (x*10)), 490])
 			
-			if score >= 30:
-				speed = 12.5
-			
-			if score >= 35-1:
+			if score >= 21-1:
 				speed = 10
 				position_of_wall_3 = [100,530]
 				body_of_wall_3 = []
@@ -82,21 +76,15 @@ while True:
 					body_of_wall_3.append([100,(position_of_wall_3[1]- (x*10))])
 					body_of_wall_3.append([110,(position_of_wall_3[1]- (x*10))])
 			
-			if score >= 40:
-				speed = 12.5
-			
-			if score >= 45-1:
+			if score >= 24-1:
 				speed = 10
 				position_of_wall_4 = [500, 330]  
 				body_of_wall_4 = []
 				for x in range(0, 30):
 					body_of_wall_4.append([500, (position_of_wall_4[1]- (x*10))])
 					body_of_wall_4.append([490, (position_of_wall_4[1]- (x*10))])
-			
-			if score >= 50:
-				speed = 12.5
 
-			if score >= 55-1:
+			if score >= 27-1:
 				speed = 10
 				position_of_wall_5_1 = [230, 230]
 				position_of_wall_5_2 = [330, 230]
@@ -114,13 +102,7 @@ while True:
 					body_of_wall_5.append([(position_of_wall_5_3[1]- (x*10)), 340])
 					body_of_wall_5.append([(position_of_wall_5_3[1]- (x*10)), 350])
 
-			if score >= 60:
-				speed = 12.5
-
-			if score >= 65:
-				speed = 15
-
-			if score == 70:
+			if score == 30-1:
 				bg = pygame.image.load('prato_bg.jpg')
 				font = pygame.font.SysFont("Comfortaa", 150)
 				surf_text = font.render("WIN", True, (0, 0, 0))
@@ -145,7 +127,7 @@ while True:
 					else:
 						x += 1
 
-			if score >= 25-1:
+			if score >= 18-1:
 				for x in range(0, len(body_of_wall_2)):
 					if body_of_wall_2[x] == foodSpawner.spawnFood():
 						foodSpawner.setFoodOnScreen(False)
@@ -153,7 +135,7 @@ while True:
 					else:
 						x += 1
 
-			if score >= 35-1:
+			if score >= 21-1:
 				for x in range(0, len(body_of_wall_3)):
 					if body_of_wall_3[x] == foodSpawner.spawnFood():
 						foodSpawner.setFoodOnScreen(False)
@@ -161,7 +143,7 @@ while True:
 					else:
 						x += 1
 
-			if score >= 45-1:
+			if score >= 24-1:
 				for x in range(0, len(body_of_wall_4)):
 					if body_of_wall_4[x] == foodSpawner.spawnFood():
 						foodSpawner.setFoodOnScreen(False)
@@ -169,7 +151,7 @@ while True:
 					else:
 						x += 1
 
-			if score >= 55-1:
+			if score >= 27-1:
 				for x in range(0, len(body_of_wall_5)):
 					if body_of_wall_5[x] == foodSpawner.spawnFood():
 						foodSpawner.setFoodOnScreen(False)
@@ -186,19 +168,19 @@ while True:
 				for pos in body_of_wall_1:
 					pygame.draw.rect(screen, pygame.Color(60,60,60), pygame.Rect(pos[0], pos[1], 10, 10))
 
-			if score >= 25:
+			if score >= 18:
 				for pos in body_of_wall_2:
 					pygame.draw.rect(screen, pygame.Color(60,60,60), pygame.Rect(pos[0], pos[1], 10, 10))
 
-			if score >= 35:
+			if score >= 21:
 				for pos in body_of_wall_3:
 					pygame.draw.rect(screen, pygame.Color(60, 60,60), pygame.Rect(pos[0], pos[1], 10, 10))
 
-			if score >= 45:
+			if score >= 24:
 				for pos in body_of_wall_4:
 					pygame.draw.rect(screen, pygame.Color(60, 60,60), pygame.Rect(pos[0], pos[1], 10, 10))
 
-			if score >= 55:
+			if score >= 27:
 				for pos in body_of_wall_5:
 					pygame.draw.rect(screen, pygame.Color(60, 60,60), pygame.Rect(pos[0], pos[1], 10, 10))
 
@@ -212,26 +194,25 @@ while True:
 						if partOfBody == bodyPart:
 							a = 1
 							break
-			if score >= 25:
+			if score >= 18:
 				for bodyPart in body_of_wall_2[1:]:
 					for partOfBody in snake.body[:]:
 						if partOfBody == bodyPart:
 							a = 1
 							break
-			if score >= 35:
+			if score >= 21:
 				for bodyPart in body_of_wall_3[1:]:
 					for partOfBody in snake.body[:]:
 						if partOfBody == bodyPart:
 							a = 1
 							break
-			if score >= 45:
+			if score >= 24:
 				for bodyPart in body_of_wall_4[1:]:
 					for partOfBody in snake.body[:]:
 						if partOfBody == bodyPart:
 							a = 1
 							break
-
-			if score >= 55:
+			if score >=27:
 				for bodyPart in body_of_wall_5[1:]:
 					for partOfBody in snake.body[:]:
 						if partOfBody == bodyPart:
