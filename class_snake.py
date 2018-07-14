@@ -53,5 +53,10 @@ class Snake():
 				return 1
 		return 0
 
+	#fornisce posizione body di snake
 	def getBody(self):
 		return self.body
+
+	#fornisce posiione testa di snake
+	def getPos(self):
+		return self.position

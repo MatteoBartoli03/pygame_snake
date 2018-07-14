@@ -192,34 +192,29 @@ while True:
 			a=0
 			if score >= 6:
 				for bodyPart in body_of_wall_1[1:]:
-					for partOfBody in snake.body[:]:
-						if partOfBody == bodyPart:
-							a = 1
-							break
+					if snake.getPos() == bodyPart:
+						a = 1
+						break
 			if score >= 8:
 				for bodyPart in body_of_wall_2[1:]:
-					for partOfBody in snake.body[:]:
-						if partOfBody == bodyPart:
-							a = 1
-							break
+					if snake.getPos() == bodyPart:
+						a = 1
+						break
 			if score >= 10:
 				for bodyPart in body_of_wall_3[1:]:
-					for partOfBody in snake.body[:]:
-						if partOfBody == bodyPart:
-							a = 1
-							break
+					if snake.getPos() == bodyPart:
+						a = 1
+						break
 			if score >= 12:
 				for bodyPart in body_of_wall_4[1:]:
-					for partOfBody in snake.body[:]:
-						if partOfBody == bodyPart:
-							a = 1
-							break
+					if snake.getPos() == bodyPart:
+						a = 1
+						break
 			if score >= 14:
 				for bodyPart in body_of_wall_5[1:]:
-					for partOfBody in snake.body[:]:
-						if partOfBody == bodyPart:
-							a = 1
-							break
+					if snake.getPos() == bodyPart:
+						a = 1
+						break
 
 			#perdita di vite legata a scontri
 			if snake.checkCollision() == 1 or a == 1:

@@ -4,7 +4,7 @@ from pygame.locals import *
 from time import gmtime, strftime
 
 #variabili di base
-life = 3
+life = 5
 speed = 10
 score = 0
 
@@ -68,8 +68,6 @@ while True:
 				for x in range(0, 30):
 					body_of_wall_1.append([(position_of_wall_1[0]+ (x*10)), 100])
 					body_of_wall_1.append([(position_of_wall_1[0]+ (x*10)), 110])
-			if score == 15:
-				speed = 11
 			if score >= 18-1:
 				position_of_wall_2 = [530,480]
 				body_of_wall_2 = []
@@ -194,34 +192,29 @@ while True:
 			a=0
 			if score >= 15:
 				for bodyPart in body_of_wall_1[1:]:
-					for partOfBody in snake.body[:]:
-						if partOfBody == bodyPart:
-							a = 1
-							break
+					if snake.getPos() == bodyPart:
+						a = 1
+						break
 			if score >= 18:
 				for bodyPart in body_of_wall_2[1:]:
-					for partOfBody in snake.body[:]:
-						if partOfBody == bodyPart:
-							a = 1
-							break
+					if snake.getPos() == bodyPart:
+						a = 1
+						break
 			if score >= 21:
 				for bodyPart in body_of_wall_3[1:]:
-					for partOfBody in snake.body[:]:
-						if partOfBody == bodyPart:
-							a = 1
-							break
+					if snake.getPos() == bodyPart:
+						a = 1
+						break
 			if score >= 24:
 				for bodyPart in body_of_wall_4[1:]:
-					for partOfBody in snake.body[:]:
-						if partOfBody == bodyPart:
-							a = 1
-							break
-			if score >=27:
+					if snake.getPos() == bodyPart:
+						a = 1
+						break
+			if score >= 27:
 				for bodyPart in body_of_wall_5[1:]:
-					for partOfBody in snake.body[:]:
-						if partOfBody == bodyPart:
-							a = 1
-							break
+					if snake.getPos() == bodyPart:
+						a = 1
+						break
 
 			#perdita di vite legata a scontri
 			if snake.checkCollision() == 1 or a == 1:
@@ -245,31 +238,31 @@ while True:
 
 
 			#punteggio e vite
-			#LIFE_SCORE = "LIFE: " + str(life) + "   SCORE: " + str(score)
-			#bg = pygame.image.load('prato_bg.jpg')
-			#font = pygame.font.SysFont("Comfortaa", 30)
-			#surf_text = font.render(LIFE_SCORE, True, (255, 255, 255))
-			#screen.blit(surf_text, (10, 10))                            
-			#pygame.display.flip()
-			#done = False
-			#while True:
-			#	for ev in pygame.event.get():
-			#			if ev.type == QUIT:
-			#				break
-			#	break
+			LIFE_SCORE = "LIFE: " + str(life) + "   SCORE: " + str(score)
+			bg = pygame.image.load('prato_bg.jpg')
+			font = pygame.font.SysFont("Comfortaa", 30)
+			surf_text = font.render(LIFE_SCORE, True, (255, 255, 255))
+			screen.blit(surf_text, (10, 10))                            
+			pygame.display.flip()
+			done = False
+			while True:
+				for ev in pygame.event.get():
+						if ev.type == QUIT:
+							break
+				break
 
 			#spiegazione elementi presenti nel gioco
-			#bg = pygame.image.load('prato_bg.jpg')
-			#font = pygame.font.SysFont("Comfortaa", 20)
-			#surf_text = font.render('SNAKE            FOOD            WALL', True, (255, 255, 255))
-			#screen.blit(surf_text, (110, 555))                            
-			#pygame.display.flip()
-			#done = False
-			#while True:
-			#	for ev in pygame.event.get():
-			#			if ev.type == QUIT:
-			#				break
-			#	break
+			bg = pygame.image.load('prato_bg.jpg')
+			font = pygame.font.SysFont("Comfortaa", 20)
+			surf_text = font.render('SNAKE            FOOD            WALL', True, (255, 255, 255))
+			screen.blit(surf_text, (110, 555))                            
+			pygame.display.flip()
+			done = False
+			while True:
+				for ev in pygame.event.get():
+						if ev.type == QUIT:
+							break
+				break
 			
 			pygame.display.flip()
 			fps.tick(speed)
