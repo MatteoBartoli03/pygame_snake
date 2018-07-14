@@ -72,8 +72,8 @@ while True:
 				position_of_wall_2 = [530,480]
 				body_of_wall_2 = []
 				for x in range(0, 30):
-					body_of_wall_2.append([(position_of_wall_2[0]- (x*10)), 480])
-					body_of_wall_2.append([(position_of_wall_2[0]- (x*10)), 490])
+					body_of_wall_2.append([(position_of_wall_2[0]- (x*10)), 450])
+					body_of_wall_2.append([(position_of_wall_2[0]- (x*10)), 460])
 			if score >= 10-1:
 				position_of_wall_3 = [100,530]
 				body_of_wall_3 = []

@@ -30,7 +30,10 @@ class Snake():
 		if self.direction == "DOWN":
 			self.position[1] += 10
 
+		#aumento caselle serpente quando snake mangia cibo
 		self.body.insert(0, list(self.position))
+		
+		#controllo snake mangia food
 		if self.position == foodPos:
 			return 1
 		else:
