@@ -2,12 +2,14 @@ import pygame, random
 
 class Snake():
 	def __init__(self):
+		#caratteristiche di base dello snake
 		self.position = [100,50]
 		self.body = [[100, 50],[90,50],[80,50],[70,50],[60,50],[50,50]]
 		self.direction = "RIGHT"
 		self.changeDirectionTo = self.direction
 
 	def ChangeDirTo(self, dir):
+		#cambio di direzione
 		if dir == "RIGHT" and not self.direction == "LEFT":
 			self.direction = "RIGHT"
 		if dir == "LEFT" and not self.direction == "RIGHT":
@@ -18,6 +20,7 @@ class Snake():
 			self.direction = "DOWN"
 
 	def move(self, foodPos):
+		#movimenti dello snake
 		if self.direction == "RIGHT":
 			self.position[0] += 10
 		if self.direction == "LEFT":
@@ -35,6 +38,7 @@ class Snake():
 			return 0
 
 	def checkCollision(self):
+		#controllo collisione
 		if self.position[0] > 530 or self.position[0] < 40:
 			return 1
 
