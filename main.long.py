@@ -4,7 +4,7 @@ from pygame.locals import *
 from time import gmtime, strftime
 
 #variabili di base
-life = 5
+life = 3
 speed = 10
 score = 0
 
@@ -105,6 +105,7 @@ while True:
 			
 			#determina la vittoria
 			if score == 30-1:
+				pygame.time.delay(250)
 				bg = pygame.image.load('prato_bg.jpg')
 				font = pygame.font.SysFont("Comfortaa", 150)
 				surf_text = font.render("WIN", True, (0, 0, 0))
@@ -228,6 +229,7 @@ while True:
 				surf_text = font.render("GAME OVER...", True, (0, 0, 0))
 				screen.blit(surf_text, (60, 250))                            
 				pygame.display.flip()
+				pygame.time.delay(250)
 				done = False
 				while not done:
 					for ev in pygame.event.get():
@@ -269,4 +271,17 @@ while True:
 
 
 		if snake.checkCollision() == 1 or a == 1:
+			if life != 0:
+				bg = pygame.image.load('prato_bg.jpg')
+				font = pygame.font.SysFont("Comfortaa", 50)
+				surf_text = font.render('LIFE :  '+ str(life), True, (255, 255, 255))
+				screen.blit(surf_text, (200, 270))                            
+				pygame.display.flip()
+				pygame.time.delay(500)
+				done = False
+				while True:
+					for ev in pygame.event.get():
+							if ev.type == QUIT:
+								break
+					break
 			break
