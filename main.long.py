@@ -34,6 +34,22 @@ while True:
 			sys.exit()
 
 		while True:
+			#assegnazione partita persa
+			if life == 0:
+				bg = pygame.image.load('prato_bg.jpg')
+				font = pygame.font.SysFont("Comfortaa", 100)
+				surf_text = font.render("GAME OVER", True, (0, 0, 0))
+				screen.blit(surf_text, (60, 250))                            
+				pygame.display.flip()
+				pygame.time.delay(250)
+				done = False
+				while not done:
+					for ev in pygame.event.get():
+							if ev.type == QUIT:
+								done = True
+					pygame.quit()
+					sys.exit()
+
 			#cambi di direzione e spostamenti
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
@@ -103,7 +119,7 @@ while True:
 					body_of_wall_5.append([(position_of_wall_5_3[1]- (x*10)), 350])
 			
 			#determina la vittoria
-			if score == 3:
+			if score == 30:
 				pygame.time.delay(250)
 				bg = pygame.image.load('prato_bg.jpg')
 				font = pygame.font.SysFont("Comfortaa", 80)
@@ -162,7 +178,7 @@ while True:
 
 			#colorazione snake
 			for pos in snake.getBody():
-				pygame.draw.rect(screen, pygame.Color(225,218,228), pygame.Rect(pos[0], pos[1], 10, 10))
+				pygame.draw.rect(screen, pygame.Color(100,160,0), pygame.Rect(pos[0], pos[1], 10, 10))
 
 			#colorazione muri
 			if score >= 15:
@@ -221,50 +237,13 @@ while True:
 				life -= 1
 				break
 
-			#assegnazione partita persa
-			if life == 0:
-				bg = pygame.image.load('prato_bg.jpg')
-				font = pygame.font.SysFont("Comfortaa", 100)
-				surf_text = font.render("GAME OVER", True, (0, 0, 0))
-				screen.blit(surf_text, (60, 250))                            
-				pygame.display.flip()
-				pygame.time.delay(250)
-				done = False
-				while not done:
-					for ev in pygame.event.get():
-							if ev.type == QUIT:
-								done = True
-					pygame.quit()
-					sys.exit()
+			#punteggio e vite
+			LIFE_SCORE = "LIFE: " + life * '♥' + "   SCORE: " + str(score)
+			font = pygame.font.SysFont("Comfortaa", 30)
+			surf_text = font.render(LIFE_SCORE, True, (255, 255, 255))
+			screen.blit(surf_text, (10, 10))                            
+			pygame.display.flip()
 
-
-	#		#punteggio e vite
-	#		LIFE_SCORE = "LIFE: " + str(life) + "   SCORE: " + str(score)
-	#		bg = pygame.image.load('prato_bg.jpg')
-	#		font = pygame.font.SysFont("Comfortaa", 30)
-	#		surf_text = font.render(LIFE_SCORE, True, (255, 255, 255))
-	#		screen.blit(surf_text, (10, 10))                            
-	#		pygame.display.flip()
-	#		done = False
-	#		while True:
-	#			for ev in pygame.event.get():
-	#					if ev.type == QUIT:
-	#						break
-	#			break
-
-	#		#spiegazione elementi presenti nel gioco
-	#		bg = pygame.image.load('prato_bg.jpg')
-	#		font = pygame.font.SysFont("Comfortaa", 20)
-	#		surf_text = font.render('SNAKE            FOOD            WALL', True, (255, 255, 255))
-	#		screen.blit(surf_text, (110, 555))                            
-	#		pygame.display.flip()
-	#		done = False
-	#		while True:
-	#			for ev in pygame.event.get():
-	#					if ev.type == QUIT:
-	#						break
-	#			break
-			
 			pygame.display.flip()
 			fps.tick(speed)
 
