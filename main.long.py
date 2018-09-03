@@ -38,8 +38,8 @@ while True:
 			if life == 0:
 				bg = pygame.image.load('prato_bg.jpg')
 				font = pygame.font.SysFont("Comfortaa", 100)
-				surf_text = font.render("GAME OVER", True, (0, 0, 0))
-				screen.blit(surf_text, (60, 250))                            
+				surf_text = font.render("GAME OVER", True, (255,255, 255))
+				screen.blit(surf_text, (80, 230))                            
 				pygame.display.flip()
 				pygame.time.delay(250)
 				done = False
@@ -122,9 +122,9 @@ while True:
 			if score == 30:
 				pygame.time.delay(250)
 				bg = pygame.image.load('prato_bg.jpg')
-				font = pygame.font.SysFont("Comfortaa", 80)
-				surf_text = font.render("YOU'VE WIN", True, (0, 0, 0))
-				screen.blit(surf_text, (100, 250))                            
+				font = pygame.font.SysFont("Comfortaa", 90)
+				surf_text = font.render("YOU'VE WIN", True, (255,255, 255))
+				screen.blit(surf_text, (100, 230))
 				pygame.display.flip()
 				done = False
 				while not done:
@@ -178,7 +178,7 @@ while True:
 
 			#colorazione snake
 			for pos in snake.getBody():
-				pygame.draw.rect(screen, pygame.Color(100,160,0), pygame.Rect(pos[0], pos[1], 10, 10))
+				pygame.draw.rect(screen, pygame.Color(255,255,255), pygame.Rect(pos[0], pos[1], 10, 10))
 
 			#colorazione muri
 			if score >= 15:
@@ -240,7 +240,7 @@ while True:
 			#punteggio e vite
 			LIFE_SCORE = "LIFE: " + life * '♥' + "   SCORE: " + str(score)
 			font = pygame.font.SysFont("Comfortaa", 30)
-			surf_text = font.render(LIFE_SCORE, True, (255, 255, 255))
+			surf_text = font.render(LIFE_SCORE, True, (255, 0, 0))
 			screen.blit(surf_text, (10, 10))                            
 			pygame.display.flip()
 
@@ -251,9 +251,9 @@ while True:
 		if snake.checkCollision() == 1 or a == 1:
 			if life != 0:
 				bg = pygame.image.load('prato_bg.jpg')
-				font = pygame.font.SysFont("Comfortaa", 50)
-				surf_text = font.render('LIFE :  '+ str(life), True, (255, 255, 255))
-				screen.blit(surf_text, (200, 270))                            
+				font = pygame.font.SysFont("Comfortaa", 100)
+				surf_text = font.render('LIFE :  '+ str(life), True, (255,255, 255))
+				screen.blit(surf_text, (150, 230))                            
 				pygame.display.flip()
 				pygame.time.delay(250)
 				done = False
