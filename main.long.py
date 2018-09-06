@@ -50,6 +50,22 @@ while True:
 					pygame.quit()
 					sys.exit()
 
+			#assegnazione partita vinta
+			if score == 30:
+				pygame.time.delay(250)
+				bg = pygame.image.load('prato_bg.jpg')
+				font = pygame.font.SysFont("Comfortaa", 90)
+				surf_text = font.render("YOU'VE WIN", True, (255,255, 255))
+				screen.blit(surf_text, (100, 230))
+				pygame.display.flip()
+				done = False
+				while not done:
+					for ev in pygame.event.get():
+							if ev.type == QUIT:
+								done = True
+					pygame.quit()
+					sys.exit()
+
 			#cambi di direzione e spostamenti
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
@@ -118,23 +134,6 @@ while True:
 					body_of_wall_5.append([(position_of_wall_5_3[1]- (x*10)), 340])
 					body_of_wall_5.append([(position_of_wall_5_3[1]- (x*10)), 350])
 			
-			#determina la vittoria
-			if score == 30:
-				pygame.time.delay(250)
-				bg = pygame.image.load('prato_bg.jpg')
-				font = pygame.font.SysFont("Comfortaa", 90)
-				surf_text = font.render("YOU'VE WIN", True, (255,255, 255))
-				screen.blit(surf_text, (100, 230))
-				pygame.display.flip()
-				done = False
-				while not done:
-					for ev in pygame.event.get():
-							if ev.type == QUIT:
-								done = True
-					pygame.quit()
-					sys.exit()
-
-
 			#controllo posizionamento cibo
 			x = 0
 			if score >= 15-1:
@@ -248,6 +247,7 @@ while True:
 			fps.tick(speed)
 
 
+		#comparsa scritte punteggio
 		if snake.checkCollision() == 1 or a == 1:
 			if life != 0:
 				bg = pygame.image.load('prato_bg.jpg')
