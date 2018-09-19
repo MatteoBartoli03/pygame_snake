@@ -15,13 +15,13 @@ class Snake():
 
 	def ChangeDirTo(self, dir):
 		#cambio di direzione
-		if dir == "RIGHT" and not self.direction == "LEFT":
+		if dir == "RIGHT" and self.direction != "LEFT":
 			self.direction = "RIGHT"
-		if dir == "LEFT" and not self.direction == "RIGHT":
+		if dir == "LEFT" and self.direction != "RIGHT":
 			self.direction = "LEFT"
-		if dir == "UP" and not self.direction == "DOWN":
+		if dir == "UP" and self.direction != "DOWN":
 			self.direction = "UP"
-		if dir == "DOWN" and not self.direction == "UP":
+		if dir == "DOWN" and self.direction != "UP":
 			self.direction = "DOWN"
 
 	def move(self, foodPos):
@@ -38,15 +38,15 @@ class Snake():
 		#aumento caselle serpente quando snake mangia cibo
 		self.body.insert(0, list(self.position))
 
-		#controllo snake mangia food
+		#controllo snake mangia food ed elimiazione caselle in più
 		if self.position == foodPos:
 			return 1
 		else:
 			self.body.pop()
 			return 0
 
+	#controllo collisione
 	def checkCollision(self):
-		#controllo collisione
 		if self.position[0] > 530 or self.position[0] < 40:
 			return 1
 
