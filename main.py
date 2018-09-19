@@ -7,6 +7,7 @@ from time import gmtime, strftime
 life = 5
 speed = 10
 score = 0
+num = 0
 
 #impostazione finestra
 screen = pygame.display.set_mode((580, 580))
@@ -25,7 +26,12 @@ while True:
 		fps = pygame.time.Clock()
 
 		#assegnamento variabili importate da class_food e class_snake
-		snake = Snake()
+		if score > 10:
+			num = 10
+		else:
+			num = score
+
+		snake = Snake(num)
 		foodSpawner = foodSpawner()
 
 		#definiamo la funzione GAME OVER

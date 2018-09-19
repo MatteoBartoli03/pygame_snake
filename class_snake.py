@@ -1,12 +1,17 @@
 import pygame, random
 
 class Snake():
-	def __init__(self):
+	def __init__(self, num):
 		#caratteristiche di base dello snake
 		self.position = [100,50]
-		self.body = [[100, 50],[90,50],[80,50],[70,50],[60,50],[50,50]]
 		self.direction = "RIGHT"
 		self.changeDirectionTo = self.direction
+		self.body = [[100, 50],[90,50],[80,50],[70,50],[60,50]]
+		x = 60
+		y = 50
+		for i in range(num):
+			x-=10
+			self.body.append([x,y])
 
 	def ChangeDirTo(self, dir):
 		#cambio di direzione
@@ -32,7 +37,7 @@ class Snake():
 
 		#aumento caselle serpente quando snake mangia cibo
 		self.body.insert(0, list(self.position))
-		
+
 		#controllo snake mangia food
 		if self.position == foodPos:
 			return 1
