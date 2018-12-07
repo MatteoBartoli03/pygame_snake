@@ -236,16 +236,3 @@ while True:
 		screen.blit(surf_text, (10, 10))                            
 		pygame.display.flip()
 		fps.tick(speed)
-
-
-	#comparsa scritte punteggio
-	if snake.checkCollision() == 1 or a == 1:
-		if life != 0:
-			bg = pygame.image.load('prato_bg.jpg')
-			font = pygame.font.SysFont("Comfortaa", 100)
-			surf_text = font.render('LIFE :  '+ str(life), True, (255,255, 255))
-			screen.blit(surf_text, (150, 230))                            
-			pygame.display.flip()
-			pygame.time.delay(250)
-			done = False
-			
