@@ -75,6 +75,16 @@ while True:
 
 		#posizionamento cibo
 		foodPos = foodSpawner.spawnFood()
+		if score == 13:
+			foodPos= [400, 400]
+		if score == 16:
+			foodPos = [200, 200]
+		if score == 19:
+			foodPos = [50, 400]
+		if score == 22:
+			foodPos = [270, 270]
+		if score == 25:
+			foodPos = [50, 400]
 		if score == 29:
 			foodPos= [270, 270]
 		if snake.move(foodPos) == 1:
