@@ -2,12 +2,28 @@ import pygame, sys, random, time
 from class_snake import Snake
 from pygame.locals import *
 from time import gmtime, strftime
+import os
 
 #variabili di base (num = lunghezza del serpente)
 life = 5
-speed = 10
+speed = 15
+main_speed = 15
 score = 0
-num = 0
+num = 10
+
+os.system('clear')
+while True:
+	try:
+		choice = int(input("Che modalità vuoi giocare? \n1. Easy \n2. Hard \n"))
+		break
+	except:
+		os.system('clear')
+		print("Scrivi un numero valido")
+
+if choice == 2:
+	speed = 30
+	main_speed = 30	
+	
 
 #inizializzazione di pygame
 pygame.init()
@@ -76,7 +92,7 @@ while True:
 		#posizionamento cibo
 		foodPos = foodSpawner.spawnFood()
 		if score == 13:
-			foodPos= [400, 400]
+			foodPos = [400, 400]
 		if score == 16:
 			foodPos = [200, 200]
 		if score == 19:
@@ -93,9 +109,9 @@ while True:
 
 		#impostazione di velocità e posiz. muri in base allo score
 		if score >= 5:
-			speed = 12.5
+			speed = main_speed + 2.5
 		if score >= 10:
-			speed = 15
+			speed = main_speed + 5
 		if score >= 14:
 			position_of_wall_1 = [40, 100]
 			body_of_wall_1 = []
@@ -237,10 +253,11 @@ while True:
 		#perdita di vite legata a scontri
 		if snake.checkCollision() == 1 or a == 1:
 			life -= 1
+			speed = main_speed
 			break
 
 		#punteggio e vite
-		LIFE_SCORE = "LIFE: " + life * '♥' + "   SCORE: " + str(score)
+		LIFE_SCORE = "LIFE: " + life * 'O' + "   SCORE: " + str(score)
 		font = pygame.font.SysFont("Comfortaa", 30)
 		surf_text = font.render(LIFE_SCORE, True, (255, 0, 0))
 		screen.blit(surf_text, (10, 10))                            
