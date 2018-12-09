@@ -14,6 +14,14 @@ num = 10
 os.system('clear')
 while True:
 	try:
+		print('''
+-----SNAKE-----
+il serpente verrà
+comandato con l\'utilizzo
+delle freccette
+della tastiera
+---------------
+''')
 		choice = int(input("Che modalità vuoi giocare? \n1. Easy \n2. Hard \n"))
 		break
 	except:
